@@ -12,11 +12,18 @@ function LayoutsNavbar() {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand as={NavLink} to="/">Home</Navbar.Brand>
+        <Navbar.Brand as={NavLink} to="/">Wall St stats</Navbar.Brand>
+
+        <div className="input-group rounded" style={{ width: '250px' }}>
+          <input type="search" className="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+          <span className="input-group-text border-0" id="search-addon">
+            <i className="fas fa-search">icon</i>
+          </span>
+        </div>
+
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse>
           <Nav className="ms-auto">
-            <Nav.Link as={NavLink} to="/todos">Browse</Nav.Link>
             {
               currentUser ? (
                 <>

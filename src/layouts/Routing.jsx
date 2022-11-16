@@ -4,7 +4,7 @@ import { Routes, BrowserRouter, Route } from 'react-router-dom'
 import ReduxProvider from '@/layouts/ReduxProvider'
 import { AuthProvider } from '@/contexts/Auth'
 import { MyTodosProvider } from '@/contexts/MyTodos'
-import { TodosProvider } from '@/contexts/Todos'
+import { StocksProvider } from '@/contexts/stocks'
 
 import App from '@/layouts/App'
 import AuthRoute from '@/layouts/AuthRoute'
@@ -15,10 +15,12 @@ import PagesHome from '@/pages/Home'
 import PagesAuthLogin from '@/pages/auth/Login'
 import PagesAuthSignup from '@/pages/auth/Signup'
 
-import PagesTodosIndex from '@/pages/todos/Index'
+import PagesStockIndex from '@/pages/stocks/Index'
 import PagesTodosShow from '@/pages/todos/Show'
 
-import PagesMyTodosIndex from '@/pages/my-todos/Index'
+import PagesMyStocksIndex from '@/pages/my-stocks/Index'
+
+// import PagesMyTodosIndex from '@/pages/my-todos/Index'
 import PagesMyTodosNew from '@/pages/my-todos/New'
 import PagesMyTodosShow from '@/pages/my-todos/Show'
 import PagesMyTodosEdit from '@/pages/my-todos/Edit'
@@ -31,7 +33,7 @@ function Routing() {
       <BrowserRouter>
         <AuthProvider>
           <MyTodosProvider>
-            <TodosProvider>
+            <StocksProvider>
               <Routes>
                 <Route path="/" element={<App />}>
                   <Route index element={<PagesHome />} />
@@ -39,10 +41,10 @@ function Routing() {
                   <Route path="/auth/login" element={<NoAuthRoute><PagesAuthLogin /></NoAuthRoute>} />
                   <Route path="/auth/signup" element={<NoAuthRoute><PagesAuthSignup /></NoAuthRoute>} />
 
-                  <Route path="/todos" element={<PagesTodosIndex />} />
+                  <Route path="/stocks" element={<PagesStockIndex />} />
                   <Route path="/todos/:id" element={<PagesTodosShow />} />
 
-                  <Route path="/my/todos" element={<AuthRoute><PagesMyTodosIndex /></AuthRoute>} />
+                  <Route path="/my/stocks" element={<AuthRoute><PagesMyStocksIndex /></AuthRoute>} />
                   <Route path="/my/todos/new" element={<AuthRoute><PagesMyTodosNew /></AuthRoute>} />
                   <Route path="/my/todos/:id" element={<AuthRoute><PagesMyTodosShow /></AuthRoute>} />
                   <Route path="/my/todos/:id/edit" element={<AuthRoute><PagesMyTodosEdit /></AuthRoute>} />
@@ -50,7 +52,7 @@ function Routing() {
                   <Route path="*" element={<PagesNotFound />} />
                 </Route>
               </Routes>
-            </TodosProvider>
+            </StocksProvider>
           </MyTodosProvider>
         </AuthProvider>
       </BrowserRouter>

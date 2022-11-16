@@ -5,6 +5,7 @@ import { ToastContainer } from 'react-toastify'
 import { useAuth } from '@/contexts/Auth'
 
 import LayoutsNavbar from '@/layouts/Navbar'
+import LayoutsSidebar from '@/layouts/Sidebar'
 import Loading from '@/components/Loading'
 
 function App() {
@@ -17,18 +18,21 @@ function App() {
   return (
     <>
       <LayoutsNavbar />
-      { loading ? <Loading /> : <Outlet />}
-      <ToastContainer
-        position="bottom-left"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
+      <div className="d-flex">
+        <LayoutsSidebar />
+        { loading ? <Loading /> : <Outlet />}
+        <ToastContainer
+          position="bottom-left"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+      </div>
     </>
   )
 }
