@@ -19,9 +19,9 @@ export function AuthProvider({ children }) {
       try {
         const resp = await axios({
           method: 'GET',
-          url: 'https://fswdi-api-auth-todos.herokuapp.com/api/my/profile'
+          url: 'http://localhost:3000/api/my/profile'
         })
-        draft.data = resp.data.user
+        draft.data = resp.data
       } catch (err) {
         draft.error = err.response.data
       } finally {
@@ -36,11 +36,11 @@ export function AuthProvider({ children }) {
       try {
         const resp = await axios({
           method: 'POST',
-          url: 'https://fswdi-api-auth-todos.herokuapp.com/api/auth/signup',
+          url: 'http://localhost:3000/api/auth/signup',
           data
         })
-        draft.data = resp.data.user
-        navigation('/my/todos')
+        draft.data = resp.data
+        navigation('/my/stocks')
       } catch (err) {
         renderErrors(err)
       }
@@ -53,11 +53,12 @@ export function AuthProvider({ children }) {
       try {
         const resp = await axios({
           method: 'POST',
-          url: 'https://fswdi-api-auth-todos.herokuapp.com/api/auth/login',
+          url: 'http://localhost:3000/api/auth/login',
           data
         })
-        draft.data = resp.data.user
-        navigation('/my/todos')
+        draft.data = resp.data
+        console.log('login:', resp)
+        navigation('/my/stocks')
       } catch (err) {
         renderErrors(err)
       }
@@ -70,7 +71,7 @@ export function AuthProvider({ children }) {
       try {
         await axios({
           method: 'DELETE',
-          url: 'https://fswdi-api-auth-todos.herokuapp.com/api/auth/logout'
+          url: 'http://localhost:3000/api/auth/logout'
         })
         draft.data = null
         navigation('/auth/login')

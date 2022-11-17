@@ -4,6 +4,7 @@ import * as Yup from 'yup'
 
 const initialValues = {
   email: '',
+  username: '',
   password: '',
   passwordConfirmation: ''
 }
@@ -17,6 +18,7 @@ function FormsAuthSignup(props) {
       validationSchema={
         Yup.object({
           email: Yup.string().required().label('Title'),
+          username: Yup.string().min(5).required().label('Username'),
           password: Yup.string().min(6).required().label('Password'),
           passwordConfirmation: Yup.string().oneOf([Yup.ref('password')], 'Passwords need to match').required().label('Password Confirmation')
         })
@@ -31,11 +33,26 @@ function FormsAuthSignup(props) {
                 className={`form-control ${e?.email && t?.email && 'is-invalid'}`}
                 name="email"
                 type="email"
-                placeholder="adam.chan@gmail.com"
+                placeholder="test@test.com"
               />
               <ErrorMessage
                 className="invalid-feedback"
                 name="email"
+                component="div"
+              />
+            </div>
+
+            <div className="mb-3">
+              <label>Username</label>
+              <Field
+                className={`form-control ${e?.username && t?.username && 'is-invalid'}`}
+                name="username"
+                type="username"
+                placeholder="enter your username"
+              />
+              <ErrorMessage
+                className="invalid-feedback"
+                name="username"
                 component="div"
               />
             </div>

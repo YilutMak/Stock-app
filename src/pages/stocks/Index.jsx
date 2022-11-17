@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
-import moment from 'moment'
-import Skeleton from 'react-loading-skeleton'
-import { useNavigate } from 'react-router-dom'
+// import moment from 'moment'
+// import Skeleton from 'react-loading-skeleton'
+// import { useNavigate } from 'react-router-dom'
 
 import { useStocks } from '@/contexts/stocks'
 
