@@ -13,16 +13,15 @@ export function StocksProvider({ children }) {
   const [indexState] = useState(initialIndex)
   const [showState, setShowState] = useState(initialShow)
 
-  const getStockRecommendations = async () => {
+  const getStockRecommendations = async (symbol) => {
     setShowState(initialShow)
     setShowState(await produce(initialShow, async (draft) => {
       try {
         const resp = await axios({
           method: 'GET',
-          url: 'http://localhost:3000/api/stock/recomendations'
-          // params: { symbol: `${ticker}` }
+          url: 'http://localhost:3000/api/stock/recomendations',
+          params: { symbol }
         })
-        console.log(resp.data)
         draft.data = resp.data
       } catch (err) {
         draft.error = err.response.data

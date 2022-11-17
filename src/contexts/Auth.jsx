@@ -57,7 +57,6 @@ export function AuthProvider({ children }) {
           data
         })
         draft.data = resp.data
-        console.log('login:', resp)
         navigation('/my/stocks')
       } catch (err) {
         renderErrors(err)
