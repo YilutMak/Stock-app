@@ -18,19 +18,34 @@ function PagesStocksIndex() {
   return (
     console.log('recomendations:', finance.finance.result[0].quotes),
 
-      <div className="row m-1" style={{ width: '100%' }}>{
+      <div className="row m-1" style={{ width: '100%', height: '100px' }}>{
         finance.finance.result[0].quotes.map((stock) => (
+
           stock.regularMarketChangePercent > 0 ? (
-            <div className="col m-2" style={{ width: '30%', height: '100px', border: 'solid black', background: 'green' }}>
-              <div className="row"><b className="p-0">{stock.symbol}</b></div>
-              <div className="row">{stock.regularMarketPrice}</div>
-              <div className="row"> {`${stock.regularMarketChangePercent.toFixed(2)}%`}</div>
+            <div className="col-4 p-1">
+              <div className="d-flex  `" style={{ height: '100px', border: '4px solid black', background: 'green', borderRadius: '10px' }}>
+                <div style={{ height: '100%', width: '30%' }}>
+                  stock chart
+                </div>
+                <div className="m-1">
+                  <div className=""><b className="p-0">{stock.symbol}</b></div>
+                  <div className="">{stock.regularMarketPrice}</div>
+                  <div className=""> {`${stock.regularMarketChangePercent.toFixed(2)}%`}</div>
+                </div>
+              </div>
             </div>
           ) : (
-            <div className="col m-2" style={{ width: '30%', height: '100px', border: 'solid black', background: 'red' }}>
-              <div className="row"><b className="p-0">{stock.symbol}</b></div>
-              <div className="row">{stock.regularMarketPrice}</div>
-              <div className="row"> {`${stock.regularMarketChangePercent.toFixed(2)}%`}</div>
+            <div className="col-4 p-1">
+              <div className="d-flex" style={{ height: '100px', border: '4px solid black', background: 'red', borderRadius: '10px' }}>
+                <div style={{ height: '100%', width: '30%' }}>
+                  stock chart
+                </div>
+                <div className="m-1">
+                  <div className=""><b className="p-0">{stock.symbol}</b></div>
+                  <div className="">{stock.regularMarketPrice}</div>
+                  <div className=""> {`${stock.regularMarketChangePercent.toFixed(2)}%`}</div>
+                </div>
+              </div>
             </div>
           )
 
