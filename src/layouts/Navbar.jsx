@@ -29,7 +29,7 @@ function LayoutsNavbar() {
             {
               currentUser ? (
                 <>
-                  <Nav.Link as={NavLink} to="/my/stocks">Welcome currentUser</Nav.Link>
+                  <Nav.Link as={NavLink} to="/my/stocks">Welcome {currentUser.username}</Nav.Link>
                   <Nav.Link onClick={logout}>Logout</Nav.Link>
                 </>
               ) : (

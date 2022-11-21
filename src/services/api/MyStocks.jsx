@@ -11,13 +11,13 @@ export const apiMyTodos = createApi({
   endpoints: (builder) => ({
     getMyStocks: builder.query({
       query: () => ({
-        url: '/api/my/stock',
+        url: '/api/my/stocks',
         method: 'GET'
       })
     }),
     createMyStock: builder.mutation({
       query: (data) => ({
-        url: '/api/my/stock',
+        url: '/api/my/stocks',
         method: 'POST',
         data
       })
