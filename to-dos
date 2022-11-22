@@ -1,8 +1,5 @@
 Need to finish
 
--add query search bar
--directs to search url when used
-
 -display details on stock
 
 -add price chart
@@ -18,7 +15,7 @@ Need to finish
 
 questions to ask
 
--how to do searchbar
+-how to disable scrolling
+-how to use logic in jsx
 
--how to reset position of the sidebar
--how to send information to sidebar
+-moment not working correctly with timestamp

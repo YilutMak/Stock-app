@@ -10,9 +10,12 @@ const StocksContext = createContext()
 const initialRecommendations = {
   dataRecommendStocks: null,
   dataSpark: null,
+  dataQuote: null,
   errorRecommendations: null,
   errorSpark: null,
+  errorQuote: null,
   recommendIsLoading: true,
+  quotesIsLoading: true,
   SparkIsLoading: true
 }
 const initialGraphs = { graphs: null, graphError: null, graphLoading: true }
@@ -43,6 +46,21 @@ export function StocksProvider({ children }) {
 
         // ! STEP 2 | GET SPARK DATA
         try {
+          const respQuote = await axios({
+            method: 'GET',
+            url: 'http://localhost:3000/api/stock/quotes',
+            params: { symbols, region: 'US' }
+          })
+          draft.dataQuote = respQuote.data.quoteResponse.result
+        } catch (err) {
+          draft.errorQuote = err.response.data
+          renderErrors(err)
+        } finally {
+          draft.quotesIsLoading = false
+        }
+
+        // ! STEP 3 | GET SPARK DATA
+        try {
           const respRecommendSpark = await axios({
             method: 'GET',
             url: 'http://localhost:3000/api/stock/spark',
@@ -56,7 +74,7 @@ export function StocksProvider({ children }) {
           draft.SparkIsLoading = false
         }
 
-      // ! STEP 3 | COMPLETE RECOMMENEDED
+      // ! STEP 4 | COMPLETE RECOMMENEDED
       } catch (err) {
         draft.errorRecommendations = err.response.data
         renderErrors(err)

@@ -3,19 +3,20 @@ import { VictoryLine } from 'victory'
 
 import { useSearch } from '@/contexts/search'
 import { useMyStocks } from '@/contexts/MyStocks'
+import { useStockDetails } from '@/contexts/stockDetails'
 
 import Loading from '@/components/Loading'
 
 function QueryStockBadge() {
   const {
     search: {
-      query,
+      // query,
       queryDataQuote,
       queryDataSpark,
-      queryQuoteIsLoading,
-      querySparkIsLoading,
-      queryErrorQuote,
-      queryErrorSpark
+      // queryQuoteIsLoading,
+      querySparkIsLoading
+      // queryErrorQuote,
+      // queryErrorSpark
     }
   } = useSearch()
 
@@ -23,21 +24,20 @@ function QueryStockBadge() {
     createMyStock
   } = useMyStocks()
 
-  const handleSidebarOpen = () => {
-    function openSidebar() {
-      document.getElementById('stockDetails').style.width = '33%'
-      document.getElementById('stockBadges').style.marginRight = '33%'
-    }
-    openSidebar()
-  }
+  const {
+    expandStockDetails
+  } = useStockDetails()
 
   const addStock = (ticker) => {
     console.log('ticker:', ticker)
     createMyStock(ticker)
   }
 
+  console.log('queryDataQuote:', queryDataQuote)
+  console.log('queryDataSpark:', queryDataSpark)
+
   return (
-    <div className="col-1 p-1 m-1" style={{ minWidth: '270px', maxWidth: '270px' }} key="qqq" onClick={handleSidebarOpen}>{
+    <div className="col-1 p-1 m-1" style={{ minWidth: '270px', maxWidth: '270px' }} key="qqq" onClick={() => expandStockDetails(queryDataQuote[0].symbol, queryDataQuote, queryDataSpark)}>{
       queryDataQuote[0].regularMarketChangePercent > 0 ? (
         <div className="d-flex" style={{ height: '100px', border: '4px solid black', background: 'green', borderRadius: '10px' }}>
           <div className="ml-2" style={{}}>
@@ -49,6 +49,10 @@ function QueryStockBadge() {
                   style={{
                     data: { stroke: '#000000', strokeWidth: 6 },
                     parent: {}
+                  }}
+                  animate={{
+                    duration: 2000,
+                    onLoad: { duration: 1000 }
                   }}
                   data={queryDataSpark[queryDataQuote[0].symbol].timestamp.map((time, u) => ({ x: queryDataSpark[queryDataQuote[0].symbol].timestamp[u], y: queryDataSpark[queryDataQuote[0].symbol].close[u] }))}
                 />
@@ -72,6 +76,10 @@ function QueryStockBadge() {
                   style={{
                     data: { stroke: '#000000', strokeWidth: 6 },
                     parent: {}
+                  }}
+                  animate={{
+                    duration: 2000,
+                    onLoad: { duration: 1000 }
                   }}
                   data={queryDataSpark[queryDataQuote[0].symbol].timestamp.map((time, u) => ({ x: queryDataSpark[queryDataQuote[0].symbol].timestamp[u], y: queryDataSpark[queryDataQuote[0].symbol].close[u] }))}
                 />

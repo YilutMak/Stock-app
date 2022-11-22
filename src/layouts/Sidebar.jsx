@@ -8,9 +8,10 @@ function LayoutsSidebar() {
   const navigate = useNavigate()
 
   return (
-    <div style={{ height: '100vh', width: '50px', background: 'blue' }}>
+    <div style={{ height: '100%', width: '50px' }}>
       <div style={{ height: '50px', width: '50px', background: 'gray' }} onClick={() => navigate('/my/stocks')}> stocks </div>
       <div style={{ height: '50px', width: '50px', background: 'black' }} onClick={() => navigate('/stocks')}> search </div>
+      <div style={{ height: '100%', width: '50px', background: 'blue' }} onClick={() => navigate('/stocks')} />
     </div>
   )
 }

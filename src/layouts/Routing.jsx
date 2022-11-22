@@ -5,6 +5,7 @@ import { AuthProvider } from '@/contexts/Auth'
 import { MyStocksProvider } from '@/contexts/MyStocks'
 import { StocksProvider } from '@/contexts/stocks'
 import { SearchProvider } from '@/contexts/search'
+import { StockDetailProvider } from '@/contexts/stockDetails'
 
 import App from '@/layouts/App'
 import AuthRoute from '@/layouts/AuthRoute'
@@ -25,28 +26,29 @@ function Routing() {
   return (
     <BrowserRouter>
       <SearchProvider>
+        <StockDetailProvider>
+          <AuthProvider>
+            <MyStocksProvider>
+              <StocksProvider>
+                <Routes>
+                  <Route path="/" element={<App />}>
+                    <Route index element={<PagesHome />} />
 
-        <AuthProvider>
-          <MyStocksProvider>
-            <StocksProvider>
-              <Routes>
-                <Route path="/" element={<App />}>
-                  <Route index element={<PagesHome />} />
+                    <Route path="/auth/login" element={<NoAuthRoute><PagesAuthLogin /></NoAuthRoute>} />
+                    <Route path="/auth/signup" element={<NoAuthRoute><PagesAuthSignup /></NoAuthRoute>} />
 
-                  <Route path="/auth/login" element={<NoAuthRoute><PagesAuthLogin /></NoAuthRoute>} />
-                  <Route path="/auth/signup" element={<NoAuthRoute><PagesAuthSignup /></NoAuthRoute>} />
+                    <Route path="/stocks" element={<PagesStockIndex />} />
 
-                  <Route path="/stocks" element={<PagesStockIndex />} />
+                    <Route path="/my/stocks" element={<AuthRoute><PagesMyStocksIndex /></AuthRoute>} />
+                    {/* <Route path="/my/todos/new" element={<AuthRoute><PagesMyTodosNew /></AuthRoute>} /> */}
 
-                  <Route path="/my/stocks" element={<AuthRoute><PagesMyStocksIndex /></AuthRoute>} />
-                  {/* <Route path="/my/todos/new" element={<AuthRoute><PagesMyTodosNew /></AuthRoute>} /> */}
-
-                  <Route path="*" element={<PagesNotFound />} />
-                </Route>
-              </Routes>
-            </StocksProvider>
-          </MyStocksProvider>
-        </AuthProvider>
+                    <Route path="*" element={<PagesNotFound />} />
+                  </Route>
+                </Routes>
+              </StocksProvider>
+            </MyStocksProvider>
+          </AuthProvider>
+        </StockDetailProvider>
       </SearchProvider>
     </BrowserRouter>
   )
