@@ -1,10 +1,10 @@
 import React from 'react'
 import { Routes, BrowserRouter, Route } from 'react-router-dom'
 
-import ReduxProvider from '@/layouts/ReduxProvider'
 import { AuthProvider } from '@/contexts/Auth'
 import { MyStocksProvider } from '@/contexts/MyStocks'
 import { StocksProvider } from '@/contexts/stocks'
+import { SearchProvider } from '@/contexts/search'
 
 import App from '@/layouts/App'
 import AuthRoute from '@/layouts/AuthRoute'
@@ -23,8 +23,9 @@ import PagesNotFound from '@/pages/NotFound'
 
 function Routing() {
   return (
-    <ReduxProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <SearchProvider>
+
         <AuthProvider>
           <MyStocksProvider>
             <StocksProvider>
@@ -46,8 +47,8 @@ function Routing() {
             </StocksProvider>
           </MyStocksProvider>
         </AuthProvider>
-      </BrowserRouter>
-    </ReduxProvider>
+      </SearchProvider>
+    </BrowserRouter>
   )
 }
 

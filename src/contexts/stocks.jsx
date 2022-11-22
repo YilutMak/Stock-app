@@ -46,7 +46,7 @@ export function StocksProvider({ children }) {
           const respRecommendSpark = await axios({
             method: 'GET',
             url: 'http://localhost:3000/api/stock/spark',
-            params: { symbols, interval: '60m', range: '1d' }
+            params: { symbols, interval: '30m', range: '1d' }
           })
           draft.dataSpark = respRecommendSpark.data
         } catch (err) {

@@ -3,7 +3,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import { NavLink } from 'react-router-dom'
-
+import Searchbar from '@/components/searchbar'
 import { useAuth } from '@/contexts/Auth'
 
 function LayoutsNavbar() {
@@ -17,10 +17,7 @@ function LayoutsNavbar() {
         <Navbar.Brand as={NavLink} to="/">Wall St stats</Navbar.Brand>
 
         <div className="input-group rounded" style={{ width: '250px' }}>
-          <input type="search" className="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-          <span className="input-group-text border-0" id="search-addon">
-            <i className="fas fa-search">icon</i>
-          </span>
+          <Searchbar />
         </div>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

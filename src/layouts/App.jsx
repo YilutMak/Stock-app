@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
+import PagesStockDetails from '@/layouts/stockDetail'
 
 import { useAuth } from '@/contexts/Auth'
 
@@ -18,21 +19,22 @@ function App() {
   return (
     <>
       <LayoutsNavbar />
-      <div className="d-flex">
+      <div id="stockBadges" className="d-flex position relative">
         <LayoutsSidebar />
         { loading ? <Loading /> : <Outlet />}
-        <ToastContainer
-          position="bottom-left"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
+        <PagesStockDetails />
       </div>
+      <ToastContainer
+        position="bottom-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   )
 }

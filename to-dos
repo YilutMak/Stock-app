@@ -1,9 +1,5 @@
 Need to finish
 
--stocks preview
--gen 1 d graph small
--create detail popup when clicked on
-
 -add query search bar
 -directs to search url when used
 
@@ -18,8 +14,11 @@ Need to finish
 
 -add MACD
 
--add plus button to add stock to user
-
--add remove button to remove stock from user
-
 -css
+
+questions to ask
+
+-how to do searchbar
+
+-how to reset position of the sidebar
+-how to send information to sidebar
