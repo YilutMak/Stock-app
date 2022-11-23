@@ -27,27 +27,25 @@ function App() {
   }, [])
 
   return (
-    <>
+    <div style={{ height: '100%' }}>
       <LayoutsNavbar />
-      <div style={{ height: '100%' }}>
-        <div id="stockBadges" className="d-flex position relative" style={{ marginRight: `${expandDetails.stockBadgesMargin}` }}>
-          <LayoutsSidebar className="col" style={{ height: '100%' }} />
-          { loading ? <Loading /> : <Outlet />}
-          <PagesStockDetails />
-        </div>
-        <ToastContainer
-          position="bottom-left"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
+      <div id="stockBadges" className="d-flex position relative" style={{ marginRight: `${expandDetails.stockBadgesMargin}` }}>
+        <LayoutsSidebar className="col" style={{ height: '100%' }} />
+        { loading ? <Loading /> : <Outlet />}
+        <PagesStockDetails />
       </div>
-    </>
+      <ToastContainer
+        position="bottom-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+    </div>
   )
 }
 

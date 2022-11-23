@@ -18,8 +18,15 @@ const initialIndex = {
   sparkIsLoading: true
 }
 
+const initStocklist = {
+  stockList: null,
+  errorList: null,
+  ListIsLoading: true
+}
+
 export function MyStocksProvider({ children }) {
   const [indexState, setIndexState] = useState(initialIndex)
+  const [stocklistState, setStocklistState] = useState(initStocklist)
 
   const getMyStocks = async () => {
     setIndexState(initialIndex)
@@ -74,6 +81,23 @@ export function MyStocksProvider({ children }) {
     }))
   }
 
+  const getStocksList = async () => {
+    setStocklistState(await produce(initStocklist, async (draft) => {
+      try {
+        const resp = await axios({
+          method: 'GET',
+          url: 'http://localhost:3000/api/my/stocks'
+        })
+        draft.stockList = resp.data.stocks
+      } catch (err) {
+        draft.errorList = err.response.data
+        renderErrors(err)
+      } finally {
+        draft.ListIsLoading = false
+      }
+    }))
+  }
+
   const createMyStock = async (ticker) => {
     console.log('create stock request sent, symbol:', ticker)
     try {
@@ -115,9 +139,11 @@ export function MyStocksProvider({ children }) {
 
   const contextData = {
     index: indexState,
+    myStocks: stocklistState,
     getMyStocks,
     createMyStock,
-    deleteMyStock
+    deleteMyStock,
+    getStocksList
   }
 
   return <MyStockContext.Provider value={contextData}>{children}</MyStockContext.Provider>

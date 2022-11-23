@@ -34,6 +34,10 @@ function MyStockBadge() {
   // console.log('dataQuote', dataQuote)
   // console.log('dataSpark', dataSpark)
 
+  const data = dataStocks || dataQuote || dataSpark
+
+  if (!data) return <Loading />
+
   return (
     <div className="d-flex position-relative w-100 m-1" style={{ height: '100%' }}>
 

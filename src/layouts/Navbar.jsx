@@ -9,7 +9,7 @@ import { useAuth } from '@/contexts/Auth'
 function LayoutsNavbar() {
   const { show: { data: currentUser }, logout } = useAuth()
 
-  console.log(currentUser)
+  // console.log(currentUser)
 
   return (
     <Navbar bg="light" expand="lg">

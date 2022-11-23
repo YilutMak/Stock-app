@@ -37,7 +37,7 @@ function QueryStockBadge() {
   console.log('queryDataSpark:', queryDataSpark)
 
   return (
-    <div className="col-1 p-1 m-1" style={{ minWidth: '270px', maxWidth: '270px' }} key="qqq" onClick={() => expandStockDetails(queryDataQuote[0].symbol, queryDataQuote, queryDataSpark)}>{
+    <div className="col-1 p-1 m-1" style={{ minWidth: '270px', maxWidth: '270px' }} key={queryDataQuote[0].symbol} onClick={() => expandStockDetails(queryDataQuote[0].symbol, queryDataQuote[0], queryDataSpark[queryDataQuote[0].symbol])}>{
       queryDataQuote[0].regularMarketChangePercent > 0 ? (
         <div className="d-flex" style={{ height: '100px', border: '4px solid black', background: 'green', borderRadius: '10px' }}>
           <div className="ml-2" style={{}}>
@@ -63,7 +63,7 @@ function QueryStockBadge() {
             <div className="">{queryDataQuote[0].regularMarketPrice.toFixed(2)}</div>
             <div className=""> {`${queryDataQuote[0].regularMarketChangePercent.toFixed(2)}%`}</div>
           </div>
-          <button type="button" className="mt-2" style={{ marginLeft: '15px', height: '30px', width: '30px', borderRadius: '15px' }} onClick={() => addStock()}>+</button>
+          <button type="button" className="mt-2" style={{ marginLeft: '15px', height: '30px', width: '30px', borderRadius: '15px' }} onClick={() => addStock(queryDataQuote[0].symbol)}>+</button>
         </div>
       ) : (
         <div className="d-flex" style={{ height: '100px', border: '4px solid black', background: 'red', borderRadius: '10px' }}>
@@ -90,7 +90,7 @@ function QueryStockBadge() {
             <div className="">{queryDataQuote[0].regularMarketPrice.toFixed(2)}</div>
             <div className=""> {`${queryDataQuote[0].regularMarketChangePercent.toFixed(2)}%`}</div>
           </div>
-          <button type="button" className="mt-2" style={{ marginLeft: '15px', height: '30px', width: '30px', borderRadius: '15px' }} onClick={() => addStock()}>+</button>
+          <button type="button" className="mt-2" style={{ marginLeft: '15px', height: '30px', width: '30px', borderRadius: '15px' }} onClick={() => addStock(queryDataQuote[0].symbol)}>+</button>
         </div>
       )
     }

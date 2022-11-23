@@ -60,7 +60,7 @@ function RecommendedStockBadge() {
                   </div>
                   <div className="" style={{ marginLeft: '17px', marginTop: '7px' }}>
                     <div className=""><b>{stock.symbol}</b></div>
-                    <div className="">{stock.regularMarketPrice}</div>
+                    <div className="">{stock.regularMarketPrice.toFixed(2)}</div>
                     <div className=""> {`${stock.regularMarketChangePercent.toFixed(2)}%`}</div>
                   </div>
                   <button type="button" className="mt-2" style={{ marginLeft: '15px', height: '30px', width: '30px', borderRadius: '15px' }} onClick={() => addStock(stock.symbol)}>+</button>
@@ -88,7 +88,7 @@ function RecommendedStockBadge() {
                   </div>
                   <div className="" style={{ marginLeft: '17px', marginTop: '7px' }}>
                     <div className=""><b>{stock.symbol}</b></div>
-                    <div className="">{stock.regularMarketPrice}</div>
+                    <div className="">{stock.regularMarketPrice.toFixed(2)}</div>
                     <div className=""> {`${stock.regularMarketChangePercent.toFixed(2)}%`}</div>
                   </div>
                   <button type="button" className="mt-2" style={{ marginLeft: '15px', height: '30px', width: '30px', borderRadius: '15px' }} onClick={() => addStock(stock.symbol)}>+</button>
