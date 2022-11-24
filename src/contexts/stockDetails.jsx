@@ -77,6 +77,7 @@ export function StockDetailProvider({ children }) {
 
   // EXPAND DETAILS FUNCTION
   const expandStockDetails = async (data, DataQuote, DataSpark) => {
+    console.log('data sent to details:', data, DataQuote, DataSpark)
     setExpandedDetailState({
       stockSymbol: data,
       expanded: true,

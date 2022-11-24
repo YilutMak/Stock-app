@@ -38,7 +38,7 @@ function MyStockBadge() {
   // console.log('dataQuote', dataQuote)
   // console.log('dataSpark', dataSpark)
 
-  const expandDetailsBar = (e, ticker, data1, data2) => {
+  const expandDetailsBar = (ticker, data1, data2) => {
     expandStockDetails(ticker, data1, data2)
   }
 
@@ -57,7 +57,7 @@ function MyStockBadge() {
         <div className="row m-1" style={{}}>{
 
           dataQuote[0].regularMarketChangePercent > 0 ? (
-            <div className="col-1 p-1" style={{ minWidth: '270px', maxWidth: '270px' }} key={dataQuote[0].shortName} onClick={(e) => expandDetailsBar(e, stockList[0].symbol, dataQuote[0], dataSpark[stockList[0].symbol])}>
+            <div className="col-1 p-1" style={{ minWidth: '270px', maxWidth: '270px' }} key={dataQuote[0].shortName} onClick={() => expandDetailsBar(stockList[0].symbol, dataQuote[0], dataSpark[stockList[0].symbol])}>
               <div id="greenStockBadge" className="d-flex" style={{ }}>
                 <div className="ml-2" style={{}}>
                   {sparkIsLoading
@@ -85,7 +85,7 @@ function MyStockBadge() {
               </div>
             </div>
           ) : (
-            <div className="col-1 p-1" style={{ minWidth: '270px', maxWidth: '270px' }} key={dataQuote[0].shortName} onClick={(e) => expandDetailsBar(e, stockList[0].symbol, 'myStock')}>
+            <div className="col-1 p-1" style={{ minWidth: '270px', maxWidth: '270px' }} key={dataQuote[0].shortName} onClick={() => expandDetailsBar(stockList[0].symbol, dataQuote[0], dataSpark[stockList[0].symbol])}>
               <div id="redStockBadge" className="d-flex" style={{}}>
                 <div className="ml-2" style={{}}>
                   {sparkIsLoading
@@ -126,7 +126,7 @@ function MyStockBadge() {
       <div className="row m-1" style={{}}>{
         stockList.map((stock, i) => (
           dataQuote[i].regularMarketChangePercent > 0 ? (
-            <div className="col-1 p-1" style={{ minWidth: '270px', maxWidth: '270px' }} key={dataQuote[i].shortName} onClick={(e) => expandDetailsBar(e, stock.symbol, dataQuote[i], dataSpark[stock.symbol])}>
+            <div className="col-1 p-1" style={{ minWidth: '270px', maxWidth: '270px' }} key={dataQuote[i].shortName} onClick={() => expandDetailsBar(stock.symbol, dataQuote[i], dataSpark[stock.symbol])}>
               <div id="greenStockBadge" className="d-flex" style={{ }}>
                 <div className="ml-2" style={{}}>
                   {sparkIsLoading
@@ -154,7 +154,7 @@ function MyStockBadge() {
               </div>
             </div>
           ) : (
-            <div className="col-1 p-1" style={{ minWidth: '270px', maxWidth: '270px' }} key={dataQuote[i].shortName} onClick={(e) => expandDetailsBar(e, stock.symbol, 'myStock')}>
+            <div className="col-1 p-1" style={{ minWidth: '270px', maxWidth: '270px' }} key={dataQuote[i].shortName} onClick={() => expandDetailsBar(stock.symbol, dataQuote[i], dataSpark[stock.symbol])}>
               <div id="redStockBadge" className="d-flex" style={{ }}>
                 <div className="ml-2" style={{}}>
                   {sparkIsLoading
