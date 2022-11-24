@@ -31,7 +31,7 @@ export function SearchProvider({ children }) {
       try {
         const respQuote = await axios({
           method: 'GET',
-          url: 'http://localhost:3000/api/stock/quotes',
+          url: `${process.env.API_URL}/api/stock/quotes`,
           params: { symbols, region: 'US' }
         })
         draft.queryDataQuote = respQuote.data.quoteResponse.result
@@ -40,7 +40,7 @@ export function SearchProvider({ children }) {
         try {
           const respSpark = await axios({
             method: 'GET',
-            url: 'http://localhost:3000/api/stock/spark',
+            url: `${process.env.API_URL}/api/stock/spark`,
             params: { symbols, interval: '30m', range: '1d' }
           })
           draft.queryDataSpark = respSpark.data

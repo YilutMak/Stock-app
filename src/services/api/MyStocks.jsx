@@ -3,7 +3,7 @@ import { createApi } from '@reduxjs/toolkit/query/react'
 import axiosBaseQuery from '@/services/axios-base-query'
 
 export const apiMyTodos = createApi({
-  baseQuery: axiosBaseQuery({ baseUrl: 'http://localhost:3000' }),
+  baseQuery: axiosBaseQuery({ baseUrl: `${process.env.API_URL}' }),
   reducerPath: 'apiMyTodos',
   refetchOnMountOrArgChange: true,
   refetchOnFocus: true,

@@ -34,7 +34,7 @@ export function StocksProvider({ children }) {
       try {
         const resp = await axios({
           method: 'GET',
-          url: 'http://localhost:3000/api/stock/recomendations',
+          url: `${process.env.API_URL}/api/stock/recomendations`,
           params: { symbol }
         })
         draft.dataRecommendStocks = resp.data
@@ -48,7 +48,7 @@ export function StocksProvider({ children }) {
         try {
           const respQuote = await axios({
             method: 'GET',
-            url: 'http://localhost:3000/api/stock/quotes',
+            url: `${process.env.API_URL}/api/stock/quotes`,
             params: { symbols, region: 'US' }
           })
           draft.dataQuote = respQuote.data.quoteResponse.result
@@ -63,7 +63,7 @@ export function StocksProvider({ children }) {
         try {
           const respRecommendSpark = await axios({
             method: 'GET',
-            url: 'http://localhost:3000/api/stock/spark',
+            url: `${process.env.API_URL}/api/stock/spark`,
             params: { symbols, interval: '30m', range: '1d' }
           })
           draft.dataSpark = respRecommendSpark.data
@@ -91,7 +91,7 @@ export function StocksProvider({ children }) {
       try {
         const resp = await axios({
           method: 'GET',
-          url: 'http://localhost:3000/api/stock/spark',
+          url: `${process.env.API_URL}/api/stock/spark`,
           params: { symbols, interval: '60m', range: '1d' }
         })
         draft.graphs = resp.data
@@ -111,7 +111,7 @@ export function StocksProvider({ children }) {
       try {
         const resp = await axios({
           method: 'GET',
-          url: 'http://localhost:3000/api/stock/quote',
+          url: `${process.env.API_URL}/api/stock/quote`,
           params: { symbols, region: 'US' }
         })
         draft.quotes = resp.data

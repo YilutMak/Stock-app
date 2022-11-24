@@ -113,7 +113,7 @@ export function StockDetailProvider({ children }) {
       try {
         const respSummary = await axios({
           method: 'GET',
-          url: 'http://localhost:3000/api/stock/summary',
+          url: `${process.env.API_URL}/api/stock/summary`,
           params: { symbol, region: 'US' }
         })
         draft.stockSummary = respSummary.data
@@ -122,7 +122,7 @@ export function StockDetailProvider({ children }) {
         try {
           const respDay = await axios({
             method: 'GET',
-            url: 'http://localhost:3000/api/stock/chartv3',
+            url: `${process.env.API_URL}/api/stock/chartv3`,
             params: { interval: '5m', symbol, range: '1d' }
           })
           draft.dayChartData = respDay.data.chart
@@ -137,7 +137,7 @@ export function StockDetailProvider({ children }) {
         try {
           const respMonth = await axios({
             method: 'GET',
-            url: 'http://localhost:3000/api/stock/chartv3',
+            url: `${process.env.API_URL}/api/stock/chartv3`,
             params: { interval: '1d', symbol, range: '1mo' }
           })
           draft.monthChartData = respMonth.data.chart
@@ -152,7 +152,7 @@ export function StockDetailProvider({ children }) {
         try {
           const respYear = await axios({
             method: 'GET',
-            url: 'http://localhost:3000/api/stock/chartv3',
+            url: `${process.env.API_URL}/api/stock/chartv3`,
             params: { interval: '1d', symbol, range: '1y' }
           })
           draft.yearChartData = respYear.data.chart

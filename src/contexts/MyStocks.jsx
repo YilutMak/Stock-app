@@ -35,7 +35,7 @@ export function MyStocksProvider({ children }) {
       try {
         const resp = await axios({
           method: 'GET',
-          url: 'http://localhost:3000/api/my/stocks'
+          url: `${process.env.API_URL}/api/my/stocks`
         })
         draft.dataStocks = resp.data.stocks
 
@@ -47,7 +47,7 @@ export function MyStocksProvider({ children }) {
         try {
           const respQuote = await axios({
             method: 'GET',
-            url: 'http://localhost:3000/api/stock/quotes',
+            url: `${process.env.API_URL}/api/stock/quotes`,
             params: { symbols, region: 'US' }
           })
           draft.dataQuote = respQuote.data.quoteResponse.result
@@ -62,7 +62,7 @@ export function MyStocksProvider({ children }) {
         try {
           const respSpark = await axios({
             method: 'GET',
-            url: 'http://localhost:3000/api/stock/spark',
+            url: `${process.env.API_URL}/api/stock/spark`,
             params: { symbols, interval: '30m', range: '1d' }
           })
           draft.dataSpark = respSpark.data
@@ -86,7 +86,7 @@ export function MyStocksProvider({ children }) {
       try {
         const resp = await axios({
           method: 'GET',
-          url: 'http://localhost:3000/api/my/stocks'
+          url: `${process.env.API_URL}/api/my/stocks`
         })
         draft.stockList = resp.data.stocks
       } catch (err) {
@@ -103,7 +103,7 @@ export function MyStocksProvider({ children }) {
     try {
       const resp = await axios({
         method: 'POST',
-        url: 'http://localhost:3000/api/my/stocks',
+        url: `${process.env.API_URL}/api/my/stocks`,
         data: { symbol: `${ticker}` }
       })
       console.log(resp)
@@ -127,7 +127,7 @@ export function MyStocksProvider({ children }) {
       try {
         const resp = await axios({
           method: 'GET',
-          url: 'http://localhost:3000/api/my/stocks'
+          url: `${process.env.API_URL}/api/my/stocks`
         })
         draft.dataStocks = resp.data.stocks
       } catch (err) {
