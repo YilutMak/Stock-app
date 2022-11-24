@@ -7,7 +7,6 @@ import { renderErrors } from './_ultils'
 const MyStockContext = createContext()
 
 const initialIndex = {
-  dataStocks: null,
   dataQuote: null,
   dataSpark: null,
   errorStocks: null,
@@ -28,35 +27,24 @@ export function MyStocksProvider({ children }) {
   const [indexState, setIndexState] = useState(initialIndex)
   const [stocklistState, setStocklistState] = useState(initStocklist)
 
-  const getMyStocks = async () => {
+  const getMyStocks = async (data) => {
     setIndexState(initialIndex)
+
+    // console.log('Recommended ticker:', data)
+
+    // ! GENERATE SYMBOLS LIST
+    const myStocksList = data.map((stock) => stock.symbol)
+    const symbols = myStocksList.join(',')
+
     setIndexState(await produce(initialIndex, async (draft) => {
-      // ! STEP 1 | GET STOCKS
+      // ! STEP 2 | GET QUOTE
       try {
-        const resp = await axios({
+        const respQuote = await axios({
           method: 'GET',
-          url: `${process.env.API_URL}/api/my/stocks`
+          url: `${process.env.API_URL}/api/stock/quotes`,
+          params: { symbols, region: 'US' }
         })
-        draft.dataStocks = resp.data.stocks
-
-        // ! GENERATE SYMBOLS LIST
-        const myStocksList = resp.data.stocks.map((stock) => stock.symbol)
-        const symbols = myStocksList.join(',')
-
-        // ! STEP 2 | GET QUOTE
-        try {
-          const respQuote = await axios({
-            method: 'GET',
-            url: `${process.env.API_URL}/api/stock/quotes`,
-            params: { symbols, region: 'US' }
-          })
-          draft.dataQuote = respQuote.data.quoteResponse.result
-        } catch (err) {
-          draft.errorQuote = err.response.data
-          renderErrors(err)
-        } finally {
-          draft.quotesIsLoading = false
-        }
+        draft.dataQuote = respQuote.data.quoteResponse.result
 
         // ! STEP 3 | GET SPARK
         try {
@@ -73,10 +61,10 @@ export function MyStocksProvider({ children }) {
           draft.sparkIsLoading = false
         }
       } catch (err) {
-        draft.errorStocks = err.response.data
+        draft.errorQuote = err.response.data
         renderErrors(err)
       } finally {
-        draft.stocksIsLoading = false
+        draft.quotesIsLoading = false
       }
     }))
   }
@@ -89,6 +77,11 @@ export function MyStocksProvider({ children }) {
           url: `${process.env.API_URL}/api/my/stocks`
         })
         draft.stockList = resp.data.stocks
+        // console.log(resp.data)
+        if (resp.data.stocks.length > 0) {
+          // console.log('getting my stock list information')
+          getMyStocks(resp.data.stocks)
+        }
       } catch (err) {
         draft.errorList = err.response.data
         renderErrors(err)
@@ -99,41 +92,36 @@ export function MyStocksProvider({ children }) {
   }
 
   const createMyStock = async (ticker) => {
-    console.log('create stock request sent, symbol:', ticker)
+    // console.log('create stock request sent, symbol:', ticker)
     try {
       const resp = await axios({
         method: 'POST',
         url: `${process.env.API_URL}/api/my/stocks`,
         data: { symbol: `${ticker}` }
       })
-      console.log(resp)
+      // console.log(resp)
     } catch (err) {
-      renderErrors(err)
+      // console.log(err)
+      renderErrors('err:', err)
     }
+    getStocksList()
   }
 
   const deleteMyStock = async (data) => {
-    console.log(data.id)
-    setIndexState(await produce(indexState, async (draft) => {
-      try {
-        await axios({
-          method: 'DELETE',
-          url: `http://localhost:3000/api/my/stock/${data.id}`
-        })
-      } catch (err) {
-        renderErrors(err)
-      }
-
-      try {
-        const resp = await axios({
-          method: 'GET',
-          url: `${process.env.API_URL}/api/my/stocks`
-        })
-        draft.dataStocks = resp.data.stocks
-      } catch (err) {
-        draft.errorStocks = err.response.data
-        renderErrors(err)
-      }
+    // console.log(data.id)
+    try {
+      await axios({
+        method: 'DELETE',
+        url: `http://localhost:3000/api/my/stock/${data.id}`
+      })
+    } catch (err) {
+      renderErrors(err)
+    }
+    // console.log(stocklistState.stockList)
+    setStocklistState(await produce(stocklistState, async (draft) => {
+      const stockDeleted = draft.stockList.filter((stock) => stock.id !== data.id)
+      draft.stockList = stockDeleted
+      // console.log(stockDeleted)
     }))
   }
 

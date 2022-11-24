@@ -1,21 +1,4 @@
-Need to finish
+Bug fixes:
 
--display details on stock
-
--add price chart
--1 d
--1 month
--5 years
-
--add candle chart
-
--add MACD
-
--css
-
-questions to ask
-
--how to disable scrolling
--how to use logic in jsx
-
--moment not working correctly with timestamp
+event click on child and parent:
+add/delete and Display chart

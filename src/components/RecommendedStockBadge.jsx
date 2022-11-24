@@ -1,5 +1,6 @@
 import React from 'react'
 import { VictoryLine } from 'victory'
+import { toast } from 'react-toastify'
 
 import { useStocks } from '@/contexts/stocks'
 import { useMyStocks } from '@/contexts/MyStocks'
@@ -23,6 +24,9 @@ function RecommendedStockBadge() {
   } = useStocks()
 
   const {
+    myStocks: {
+      stockList
+    },
     createMyStock
   } = useMyStocks()
 
@@ -30,7 +34,13 @@ function RecommendedStockBadge() {
     expandStockDetails
   } = useStockDetails()
 
-  const addStock = (ticker) => {
+  const addStock = (e, ticker) => {
+    e.stopPropagation()
+    console.log('add stock, check my stock list:', stockList)
+    const dupStock = stockList.filter((stock) => stock.symbol === ticker)
+    if (dupStock.length > 0) {
+      toast.error('Oops! This stock has already been added to your list')
+    }
     console.log('ticker:', ticker)
     createMyStock(ticker)
   }
@@ -63,7 +73,7 @@ function RecommendedStockBadge() {
                     <div className="">{stock.regularMarketPrice.toFixed(2)}</div>
                     <div className=""> {`${stock.regularMarketChangePercent.toFixed(2)}%`}</div>
                   </div>
-                  <button type="button" className="mt-2" style={{ marginLeft: '15px', height: '30px', width: '30px', borderRadius: '15px' }} onClick={() => addStock(stock.symbol)}>+</button>
+                  <button type="button" className="mt-2" style={{ marginLeft: '15px', height: '30px', width: '30px', borderRadius: '15px' }} onClick={(e) => addStock(e, stock.symbol)}>+</button>
                 </div>
               </div>
             ) : (
@@ -91,7 +101,7 @@ function RecommendedStockBadge() {
                     <div className="">{stock.regularMarketPrice.toFixed(2)}</div>
                     <div className=""> {`${stock.regularMarketChangePercent.toFixed(2)}%`}</div>
                   </div>
-                  <button type="button" className="mt-2" style={{ marginLeft: '15px', height: '30px', width: '30px', borderRadius: '15px' }} onClick={() => addStock(stock.symbol)}>+</button>
+                  <button type="button" className="mt-2" style={{ marginLeft: '15px', height: '30px', width: '30px', borderRadius: '15px' }} onClick={(e) => addStock(e, stock.symbol)}>+</button>
                 </div>
               </div>
             )

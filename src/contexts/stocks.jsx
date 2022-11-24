@@ -28,6 +28,7 @@ export function StocksProvider({ children }) {
   const [quotesState, setQuotesState] = useState(initialQuotes)
 
   const getStockRecommendations = async (symbol) => {
+    console.log(symbol)
     setRecommendationsState(initialRecommendations)
     setRecommendationsState(await produce(initialRecommendations, async (draft) => {
       // ! STEP 1 | GET RECOMMENEDED STOCKS
@@ -76,7 +77,7 @@ export function StocksProvider({ children }) {
 
       // ! STEP 4 | COMPLETE RECOMMENEDED
       } catch (err) {
-        draft.errorRecommendations = err.response.data
+        draft.errorRecommendations = err.response
         renderErrors(err)
       } finally {
         draft.recommendIsLoading = false

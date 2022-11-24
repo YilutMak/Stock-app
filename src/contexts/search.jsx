@@ -18,12 +18,23 @@ const initialSearch = {
   queryErrorSpark: null
 }
 
+const initialQuery = {
+  searchStage: 1
+}
+
 export function SearchProvider({ children }) {
   const navigation = useNavigate()
   const [searchState, setSearchState] = useState(initialSearch)
+  const [queryState, setQueryState] = useState(initialQuery)
+
+  const resetSearch = () => {
+    setQueryState(initialQuery)
+  }
 
   const searchStock = async (data) => {
-    setSearchState(initialSearch)
+    setQueryState({
+      searchStage: 2
+    })
     setSearchState(await produce(initialSearch, async (draft) => {
       draft.query = data.toUpperCase()
       const symbols = data.toUpperCase()
@@ -55,6 +66,9 @@ export function SearchProvider({ children }) {
         renderErrors(err)
       } finally {
         draft.queryQuoteIsLoading = false
+        setQueryState({
+          searchStage: 3
+        })
         navigation('/stocks')
       }
     }))
@@ -62,7 +76,9 @@ export function SearchProvider({ children }) {
 
   const contextData = {
     search: searchState,
-    searchStock
+    searchStock,
+    resetSearch,
+    input: queryState
   }
 
   return <StockContext.Provider value={contextData}>{children}</StockContext.Provider>

@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 
 import { useStocks } from '@/contexts/stocks'
 import { useSearch } from '@/contexts/search'
-import { useAuth } from '@/contexts/Auth'
 import { useMyStocks } from '@/contexts/MyStocks'
 
 import Loading from '@/components/Loading'
@@ -35,60 +34,60 @@ function PagesStocksIndex() {
 
   const {
     search: {
-      query,
-      // queryDataQuote,
-      // queryDataSpark,
+      // query,
+      queryDataQuote,
+      queryDataSpark,
       queryQuoteIsLoading,
-      // querySparkIsLoading,
+      querySparkIsLoading,
       queryErrorQuote,
       queryErrorSpark
-    }
+    },
+    input: { searchStage }
   } = useSearch()
 
-  const {
-    show: {
-      data
-    }
-  } = useAuth()
+  const haveStocks = stockList?.length > 0
+  const recommendationsLoading = recommendIsLoading || SparkIsLoading
+  const error = errorRecommendations || errorSpark || queryErrorQuote || queryErrorSpark
+  const queryData = queryDataQuote || queryDataSpark
+  const queryLoading = queryQuoteIsLoading || querySparkIsLoading
 
   useEffect(() => {
-    if (stockList) {
-      console.log('stockList:', stockList)
-      console.log('recommend input:', stockList[stockList.length - 1].symbol)
+    if (haveStocks) {
+      // console.log('stockList:', stockList)
     }
-    getStockRecommendations(stockList ? stockList[stockList.length - 1].symbol : 'SPY')
 
-    if (data) {
-      getStocksList()
-    }
+    getStockRecommendations(stockList ? stockList[stockList.length - 1].symbol : 'SPY')
+    getStocksList()
   }, [])
 
-  console.log('showState:', data)
+  const searching = () => {
+    // console.log('queryLoading:', queryLoading)
+    if (searchStage === 1) {
+      return <div className="row w-100 m-1">Search your stock!</div>
+    }
 
-  const error = errorRecommendations || errorSpark || queryErrorQuote || queryErrorSpark
+    if (searchStage === 2 && !queryData) {
+      return <Loading />
+    }
+    if (searchStage === 3 && queryData) {
+      return <QueryStockBadge />
+    }
+
+    return (<div />)
+  }
+
+  const stockRecomendations = () => (recommendationsLoading ? <Loading /> : <RecommendedStockBadge />)
 
   if (error) return <h1 className="text-center">{error.data}</h1>
-  if (recommendIsLoading || SparkIsLoading) return <h1 className="text-center"><Loading /></h1>
 
-  if (query) {
-    return (
-      <div className="d-flex position-relative w-100 m-1">
-        <div style={{ height: '150px' }}>
-          <div style={{ height: '150px' }}>
-            {queryQuoteIsLoading ? <Loading /> : <QueryStockBadge />}
-          </div>
-          <RecommendedStockBadge />
-        </div>
-      </div>
-    )
-  }
   return (
     <div className="d-flex position-relative w-100 m-1">
       <div style={{ height: '150px' }}>
         <div style={{ height: '150px' }}>
-          <div className="row w-100 m-1">Search your stock!</div>
+          {searching()}
+
         </div>
-        <RecommendedStockBadge />
+        {stockRecomendations()}
       </div>
     </div>
   )

@@ -5,6 +5,10 @@ export const renderErrors = (err) => {
   console.log(err.response) // eslint-disable-line
 
   switch (err.response.status) {
+    case 400: {
+      toast.error('Oops! Something went wrong')
+      break
+    }
     case 401: {
       toast.error('You are not authorized to view this')
       break

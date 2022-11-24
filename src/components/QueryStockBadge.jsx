@@ -1,5 +1,6 @@
 import React from 'react'
 import { VictoryLine } from 'victory'
+import { toast } from 'react-toastify'
 
 import { useSearch } from '@/contexts/search'
 import { useMyStocks } from '@/contexts/MyStocks'
@@ -21,6 +22,9 @@ function QueryStockBadge() {
   } = useSearch()
 
   const {
+    myStocks: {
+      stockList
+    },
     createMyStock
   } = useMyStocks()
 
@@ -28,13 +32,19 @@ function QueryStockBadge() {
     expandStockDetails
   } = useStockDetails()
 
-  const addStock = (ticker) => {
+  const addStock = (e, ticker) => {
+    e.stopPropagation()
+    console.log('add stock, check my stock list:', stockList)
+    const dupStock = stockList.filter((stock) => stock.symbol === ticker)
+    if (dupStock.length > 0) {
+      toast.error('Oops! This stock has already been added to your list')
+    }
     console.log('ticker:', ticker)
     createMyStock(ticker)
   }
 
-  console.log('queryDataQuote:', queryDataQuote)
-  console.log('queryDataSpark:', queryDataSpark)
+  // console.log('queryDataQuote:', queryDataQuote)
+  // console.log('queryDataSpark:', queryDataSpark)
 
   return (
     <div className="col-1 p-1 m-1" style={{ minWidth: '270px', maxWidth: '270px' }} key={queryDataQuote[0].symbol} onClick={() => expandStockDetails(queryDataQuote[0].symbol, queryDataQuote[0], queryDataSpark[queryDataQuote[0].symbol])}>{
@@ -63,7 +73,7 @@ function QueryStockBadge() {
             <div className="">{queryDataQuote[0].regularMarketPrice.toFixed(2)}</div>
             <div className=""> {`${queryDataQuote[0].regularMarketChangePercent.toFixed(2)}%`}</div>
           </div>
-          <button type="button" className="mt-2" style={{ marginLeft: '15px', height: '30px', width: '30px', borderRadius: '15px' }} onClick={() => addStock(queryDataQuote[0].symbol)}>+</button>
+          <button type="button" className="mt-2" style={{ marginLeft: '15px', height: '30px', width: '30px', borderRadius: '15px' }} onClick={(e) => addStock(e, queryDataQuote[0].symbol)}>+</button>
         </div>
       ) : (
         <div className="d-flex" style={{ height: '100px', border: '4px solid black', background: 'red', borderRadius: '10px' }}>
@@ -90,7 +100,7 @@ function QueryStockBadge() {
             <div className="">{queryDataQuote[0].regularMarketPrice.toFixed(2)}</div>
             <div className=""> {`${queryDataQuote[0].regularMarketChangePercent.toFixed(2)}%`}</div>
           </div>
-          <button type="button" className="mt-2" style={{ marginLeft: '15px', height: '30px', width: '30px', borderRadius: '15px' }} onClick={() => addStock(queryDataQuote[0].symbol)}>+</button>
+          <button type="button" className="mt-2" style={{ marginLeft: '15px', height: '30px', width: '30px', borderRadius: '15px' }} onClick={(e) => addStock(e, queryDataQuote[0].symbol)}>+</button>
         </div>
       )
     }
