@@ -31,7 +31,6 @@ function LayoutsSidebar() {
   const gotToStocks = () => {
     resetSearch()
     navigate('/stocks')
-    getStockRecommendations(stockList[stockList.length - 1].symbol ? stockList[stockList.length - 1].symbol : 'SPY')
   }
 
   return (

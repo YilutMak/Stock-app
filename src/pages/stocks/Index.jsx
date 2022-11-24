@@ -34,7 +34,7 @@ function PagesStocksIndex() {
 
   const {
     search: {
-      // query,
+      query,
       queryDataQuote,
       queryDataSpark,
       queryQuoteIsLoading,
@@ -56,7 +56,8 @@ function PagesStocksIndex() {
       // console.log('stockList:', stockList)
     }
 
-    getStockRecommendations(stockList ? stockList[stockList.length - 1].symbol : 'SPY')
+    console.log('stockList:', stockList)
+    getStockRecommendations(query || 'SPY')
     getStocksList()
   }, [])
 
