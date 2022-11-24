@@ -63,13 +63,18 @@ function PagesStocksIndex() {
   const searching = () => {
     // console.log('queryLoading:', queryLoading)
     if (searchStage === 1) {
-      return <div className="row w-100 m-1">Search your stock!</div>
+      return (
+        <div id="SearchForStuff" className="d-flex justify-content-end">
+          <div className="row w-100 m-1">Search your stock!</div>
+        </div>
+      )
     }
 
     if (searchStage === 2 && !queryData) {
       return <Loading />
     }
     if (searchStage === 3 && queryData) {
+      console.log('queryData:', queryData)
       return <QueryStockBadge />
     }
 
@@ -83,9 +88,12 @@ function PagesStocksIndex() {
   return (
     <div className="d-flex position-relative w-100 m-1">
       <div style={{ height: '150px' }}>
-        <div style={{ height: '150px' }}>
+        <div style={{ height: '120px' }}>
           {searching()}
 
+        </div>
+        <div id="recommend">
+          <h4>Stock Recommendations</h4>
         </div>
         {stockRecomendations()}
       </div>

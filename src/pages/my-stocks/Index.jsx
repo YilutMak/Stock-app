@@ -37,7 +37,15 @@ function PagesMyStocksIndex() {
 
   if (error) return <h1 className="text-center">{error.data.message}</h1>
 
-  if (!moreThanOneStock && !ListIsLoading) return <h1>You do not have stocks yet!</h1>
+  if (!moreThanOneStock && !ListIsLoading) {
+    return (
+      <div className="d-flex justify-content-center" style={{ width: '100%', height: '300px' }}>
+        <div id="empty" />
+      </div>
+
+    )
+  }
+
   if (moreThanOneStock && !data) return <h1 className="text-center"><Loading /></h1>
 
   return (

@@ -12,27 +12,29 @@ function LayoutsNavbar() {
   // console.log(currentUser)
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar className="d-flex justify-content-between" id="navbar" expand="lg">
       <Container>
-        <Navbar.Brand as={NavLink} to="/">Wall St stats</Navbar.Brand>
-
-        <div className="input-group rounded" style={{ width: '250px' }}>
-          <Searchbar />
-        </div>
+        <Navbar.Brand as={NavLink} to="/"><div id="wallst" /></Navbar.Brand>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse>
-          <Nav className="ms-auto">
+        <Navbar.Collapse style={{}}>
+          <Nav className="mx-auto">
             {
               currentUser ? (
                 <>
-                  <Nav.Link as={NavLink} to="/my/stocks">Welcome {currentUser.username}</Nav.Link>
-                  <Nav.Link onClick={logout}>Logout</Nav.Link>
+                  <div id="searchbarContainer" className="d-flex justify-content-center">
+                    <Searchbar />
+                  </div>
+                  <Nav.Link id="navComponent" className="text-light d-flex justify-content-end" style={{ }} as={NavLink} to="/my/stocks">Welcome {currentUser.username}</Nav.Link>
+                  <Nav.Link className="ml-6 text-light" onClick={logout}>Logout</Nav.Link>
                 </>
               ) : (
                 <>
-                  <Nav.Link as={NavLink} to="/auth/login">Login</Nav.Link>
-                  <Nav.Link as={NavLink} to="/auth/signup">Signup</Nav.Link>
+                  <div id="searchbarContainer" className="d-flex justify-content-center">
+                    <Searchbar />
+                  </div>
+                  <Nav.Link id="navComponent" className="mr-auto text-light" as={NavLink} to="/auth/login">Login</Nav.Link>
+                  <Nav.Link id="navComponent" className="text-light" as={NavLink} to="/auth/signup">Signup</Nav.Link>
                 </>
               )
             }

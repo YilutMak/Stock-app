@@ -50,14 +50,14 @@ function RecommendedStockBadge() {
           finance.finance.result[0].quotes.map((stock, i) => (
             stock.regularMarketChangePercent > 0 ? (
               <div className="col-1 p-1" style={{ minWidth: '270px', maxWidth: '270px' }} key={stock.shortName} onClick={() => expandStockDetails(stock.symbol, dataQuote[i], dataSpark[stock.symbol])}>
-                <div className="d-flex" style={{ height: '100px', border: '4px solid black', background: 'green', borderRadius: '10px' }}>
+                <div id="greenStockBadge" className="d-flex" style={{ }}>
                   <div className="ml-2" style={{}}>
                     {recommendIsLoading
                       ? <Loading />
                       : (
                         <VictoryLine
                           style={{
-                            data: { stroke: '#000000', strokeWidth: 6 },
+                            data: { stroke: '#74fb8b', strokeWidth: 6 },
                             parent: {}
                           }}
                           animate={{
@@ -73,19 +73,19 @@ function RecommendedStockBadge() {
                     <div className="">{stock.regularMarketPrice.toFixed(2)}</div>
                     <div className=""> {`${stock.regularMarketChangePercent.toFixed(2)}%`}</div>
                   </div>
-                  <button type="button" className="mt-2" style={{ marginLeft: '15px', height: '30px', width: '30px', borderRadius: '15px' }} onClick={(e) => addStock(e, stock.symbol)}>+</button>
+                  <button id="addButtons" type="button" className="mt-2 p-0" style={{ }} onClick={(e) => addStock(e, stock.symbol)}><div id="add" /></button>
                 </div>
               </div>
             ) : (
               <div className="col-1 p-1" style={{ minWidth: '270px', maxWidth: '270px' }} key={stock.shortName} onClick={() => expandStockDetails(stock.symbol, dataQuote[i], dataSpark[stock.symbol])}>
-                <div className="d-flex" style={{ height: '100px', border: '4px solid black', background: 'red', borderRadius: '10px' }}>
+                <div id="redStockBadge" className="d-flex" style={{ }}>
                   <div className="ml-2" style={{}}>
                     {recommendIsLoading
                       ? <Loading />
                       : (
                         <VictoryLine
                           style={{
-                            data: { stroke: '#000000', strokeWidth: 6 },
+                            data: { stroke: '#fa5b5b', strokeWidth: 6 },
                             parent: {}
                           }}
                           animate={{
@@ -101,7 +101,7 @@ function RecommendedStockBadge() {
                     <div className="">{stock.regularMarketPrice.toFixed(2)}</div>
                     <div className=""> {`${stock.regularMarketChangePercent.toFixed(2)}%`}</div>
                   </div>
-                  <button type="button" className="mt-2" style={{ marginLeft: '15px', height: '30px', width: '30px', borderRadius: '15px' }} onClick={(e) => addStock(e, stock.symbol)}>+</button>
+                  <button id="addButtons" type="button" className="mt-2 p-0" style={{ }} onClick={(e) => addStock(e, stock.symbol)}><div id="add" /></button>
                 </div>
               </div>
             )

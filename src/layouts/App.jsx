@@ -30,7 +30,7 @@ function App() {
     <div style={{ height: '100%' }}>
       <LayoutsNavbar />
       <div id="stockBadges" className="d-flex position relative" style={{ marginRight: `${expandDetails.stockBadgesMargin}` }}>
-        <LayoutsSidebar className="col" style={{ height: '100%' }} />
+        <LayoutsSidebar className="col" style={{ height: '100vh' }} />
         { loading ? <Loading /> : <Outlet />}
         <PagesStockDetails />
       </div>

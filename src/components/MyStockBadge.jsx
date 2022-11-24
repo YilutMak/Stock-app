@@ -38,8 +38,8 @@ function MyStockBadge() {
   // console.log('dataQuote', dataQuote)
   // console.log('dataSpark', dataSpark)
 
-  const expandDetailsBar = (e, data1, data2) => {
-    expandStockDetails(data1, data2)
+  const expandDetailsBar = (e, ticker, data1, data2) => {
+    expandStockDetails(ticker, data1, data2)
   }
 
   const deleteStockFromList = (e, data) => {
@@ -58,14 +58,14 @@ function MyStockBadge() {
 
           dataQuote[0].regularMarketChangePercent > 0 ? (
             <div className="col-1 p-1" style={{ minWidth: '270px', maxWidth: '270px' }} key={dataQuote[0].shortName} onClick={(e) => expandDetailsBar(e, stockList[0].symbol, dataQuote[0], dataSpark[stockList[0].symbol])}>
-              <div className="d-flex" style={{ height: '100px', border: '4px solid black', background: 'green', borderRadius: '10px' }}>
+              <div id="greenStockBadge" className="d-flex" style={{ }}>
                 <div className="ml-2" style={{}}>
                   {sparkIsLoading
                     ? <Loading />
                     : (
                       <VictoryLine
                         style={{
-                          data: { stroke: '#000000', strokeWidth: 6 },
+                          data: { stroke: '#74fb8b', strokeWidth: 6 },
                           parent: {}
                         }}
                         animate={{
@@ -81,19 +81,19 @@ function MyStockBadge() {
                   <div className="">{dataQuote[0].regularMarketPrice.toFixed(2)}</div>
                   <div className="">{`${dataQuote[0].regularMarketChangePercent.toFixed(2)}%`}</div>
                 </div>
-                <button type="button" className="mt-2" style={{ marginLeft: '15px', height: '30px', width: '30px', borderRadius: '15px' }} onClick={(e) => deleteStockFromList(e, stockList[0])}>x</button>
+                <button id="addButtons" type="button" className="mt-2 p-0" style={{ }} onClick={(e) => deleteStockFromList(e, stockList[0])}><div id="close" /></button>
               </div>
             </div>
           ) : (
             <div className="col-1 p-1" style={{ minWidth: '270px', maxWidth: '270px' }} key={dataQuote[0].shortName} onClick={(e) => expandDetailsBar(e, stockList[0].symbol, 'myStock')}>
-              <div className="d-flex" style={{ height: '100px', border: '4px solid black', background: 'red', borderRadius: '10px' }}>
+              <div id="redStockBadge" className="d-flex" style={{}}>
                 <div className="ml-2" style={{}}>
                   {sparkIsLoading
                     ? <Loading />
                     : (
                       <VictoryLine
                         style={{
-                          data: { stroke: '#000000', strokeWidth: 6 },
+                          data: { stroke: '#fa5b5b', strokeWidth: 6 },
                           parent: {}
                         }}
                         animate={{
@@ -109,7 +109,7 @@ function MyStockBadge() {
                   <div className="">{dataQuote[0].regularMarketPrice.toFixed(2)}</div>
                   <div className=""> {`${dataQuote[0].regularMarketChangePercent.toFixed(2)}%`}</div>
                 </div>
-                <button type="button" className="mt-2" style={{ marginLeft: '15px', height: '30px', width: '30px', borderRadius: '15px' }} onClick={(e) => deleteStockFromList(e, stockList[0])}>x</button>
+                <button id="addButtons" type="button" className="mt-2 p-0" style={{ }} onClick={(e) => deleteStockFromList(e, stockList[0])}><div id="close" /></button>
               </div>
             </div>
           )
@@ -127,14 +127,14 @@ function MyStockBadge() {
         stockList.map((stock, i) => (
           dataQuote[i].regularMarketChangePercent > 0 ? (
             <div className="col-1 p-1" style={{ minWidth: '270px', maxWidth: '270px' }} key={dataQuote[i].shortName} onClick={(e) => expandDetailsBar(e, stock.symbol, dataQuote[i], dataSpark[stock.symbol])}>
-              <div className="d-flex" style={{ height: '100px', border: '4px solid black', background: 'green', borderRadius: '10px' }}>
+              <div id="greenStockBadge" className="d-flex" style={{ }}>
                 <div className="ml-2" style={{}}>
                   {sparkIsLoading
                     ? <Loading />
                     : (
                       <VictoryLine
                         style={{
-                          data: { stroke: '#000000', strokeWidth: 6 },
+                          data: { stroke: '#74fb8b', strokeWidth: 6 },
                           parent: {}
                         }}
                         animate={{
@@ -150,19 +150,19 @@ function MyStockBadge() {
                   <div className="">{dataQuote[i].regularMarketPrice.toFixed(2)}</div>
                   <div className="">{`${dataQuote[i].regularMarketChangePercent.toFixed(2)}%`}</div>
                 </div>
-                <button type="button" className="mt-2" style={{ marginLeft: '15px', height: '30px', width: '30px', borderRadius: '15px' }} onClick={(e) => deleteStockFromList(e, stockList[i])}>x</button>
+                <button id="addButtons" type="button" className="mt-2 p-0" style={{}} onClick={(e) => deleteStockFromList(e, stockList[i])}><div id="close" /></button>
               </div>
             </div>
           ) : (
             <div className="col-1 p-1" style={{ minWidth: '270px', maxWidth: '270px' }} key={dataQuote[i].shortName} onClick={(e) => expandDetailsBar(e, stock.symbol, 'myStock')}>
-              <div className="d-flex" style={{ height: '100px', border: '4px solid black', background: 'red', borderRadius: '10px' }}>
+              <div id="redStockBadge" className="d-flex" style={{ }}>
                 <div className="ml-2" style={{}}>
                   {sparkIsLoading
                     ? <Loading />
                     : (
                       <VictoryLine
                         style={{
-                          data: { stroke: '#000000', strokeWidth: 6 },
+                          data: { stroke: '#fa5b5b', strokeWidth: 6 },
                           parent: {}
                         }}
                         animate={{
@@ -178,7 +178,7 @@ function MyStockBadge() {
                   <div className="">{dataQuote[i].regularMarketPrice.toFixed(2)}</div>
                   <div className=""> {`${dataQuote[i].regularMarketChangePercent.toFixed(2)}%`}</div>
                 </div>
-                <button type="button" className="mt-2" style={{ marginLeft: '15px', height: '30px', width: '30px', borderRadius: '15px' }} onClick={(e) => deleteStockFromList(e, stockList[i])}>x</button>
+                <button id="addButtons" type="button" className="mt-2 p-0" style={{}} onClick={(e) => deleteStockFromList(e, stockList[i])}><div id="add" /></button>
               </div>
             </div>
           )

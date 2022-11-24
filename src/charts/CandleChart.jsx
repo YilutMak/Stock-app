@@ -82,6 +82,10 @@ function CandleDay() {
       <VictoryCandlestick
         candleColors={{ positive: '#AAFF00', negative: '#C41E3A' }}
         data={chartdata()}
+        animate={{
+          duration: 2000,
+          onLoad: { duration: 1000 }
+        }}
       />
       <VictoryAxis crossAxis fixLabelOverlap />
       <VictoryAxis dependentAxis />

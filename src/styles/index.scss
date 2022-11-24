@@ -12,7 +12,8 @@
   z-index: 1;
   /* Stay on top */
   right: 0;
-  background-color: rgb(201, 201, 201);
+  background-color: #212121;
+  color: #6a6a6a;
   /* Black*/
   overflow-x: hidden;
   /* Disable horizontal scroll */
@@ -24,9 +25,10 @@
 
 #searchForm {
   background-color: #ffffff;
-  width: 300px;
+  height: 50px;
   height: 44px;
-  border-radius: 5px;
+  border-radius: 30px;
+  width: 260px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -36,8 +38,7 @@
   all: unset;
   font: 16px system-ui;
   color: rgb(51, 51, 51);
-  height: 100%;
-  width: 100%;
+    margin-left: 10px;
   padding: 6px 10px;
 }
 
@@ -49,7 +50,8 @@
 }
 
 #searchSVG {
-  color: rgb(104, 104, 104);
+
+  color: #676767;
   fill: currentColor;
   width: 45px;
   height: 45px;
@@ -58,4 +60,222 @@
 
 .tspan{
     font-Size: '5px' !important
+}
+
+
+body {
+  width: auto;
+  height: 100%;
+  background-color: rgb(42, 42, 42);
+}
+
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
+#navbar {
+  background-color: rgb(95, 174, 61) !important;
+  width: 100% !important;
+  position: relative;
+      z-index: 10000;
+}
+
+#sidebar{
+  background-color: rgb(101, 184, 65);
+}
+
+#pages-home{
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#navContainer
+{
+  margin-left: 0 !important;
+    margin-right: 0 !important;
+      width: 100vw !important;
+}
+
+#searchbarContainer{
+//  margin-left: 30% !important;
+//    margin-right: 15% !important;
+//margin-top: 5px;
+
+}
+
+#sidebarMyStock{
+  background-color: rgb(101, 184, 65);
+  margin-top: 0px;
+    background-image: url(../images/mystocks.png);
+      background-size: 50px, 50px;
+}
+
+#sidebarSearch {
+  background-color: rgb(101, 184, 65);
+  margin-top: 5px;
+  background-image: url(../images/searchIcon.png);
+  background-size: 50px, 50px;
+}
+
+#sidebarMyStock:hover {
+  background-color: rgb(90, 161, 60);
+  cursor: pointer;
+  //outline: rgb(79, 178, 37) solid 10px;
+  border-radius: 10px;
+    background-image: url(../images/mystocks.png);
+      background-size: 54px, 54px;
+}
+
+#sidebarSearch:hover{
+  background-color: rgb(90, 161, 60);
+  cursor: pointer;
+  //outline: rgb(79, 178, 37) solid 10px;
+  border-radius: 10px;
+  background-image: url(../images/searchIcon.png);
+  background-size: 54px, 54px;
+}
+
+#wallst{
+  background-image: url(../images/wallstats.png);
+  background-size: 150px,50px;
+    width: 150px;
+    height: 25px;
+}
+
+#navComponent{
+color: rgb(227, 227, 227) !important;
+}
+
+Form{
+  color: rgb(227, 227, 227) !important;
+}
+
+#submitbutton{
+  background-color: rgb(101, 184, 65)!important;
+  border: rgb(101, 184, 65)!important;
+}
+
+#submitbutton:hover {
+  background-color: rgb(101, 184, 65) !important;
+  //border: solid 3px, rgb(101, 184, 65) !important;
+  //border: 6px solid, rgb(101, 184, 65);
+  outline: rgb(101, 184, 65) solid 1px !important;
+}
+
+#pages-auth-login{
+    color: rgb(227, 227, 227) !important;
+    margin-top: 50px;
+  }
+
+    #pages-auth-signup {
+      color: rgb(227, 227, 227) !important;
+      margin-top: 50px;
+    }
+
+  #buildStockList{
+  position: relative;
+  width: 100%;
+  margin-top: 100px;
+  color: rgb(81, 81, 81) !important;
+  height: 200px;
+}
+
+#empty{
+    background-image: url(../images/empty.png);
+    background-size: cover;
+    height: 700px;
+    width: 850px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#recommend{
+  color: rgb(90, 90, 90) !important;
+  margin-left: 20px !important;
+}
+
+#SearchForStuff {
+  color: rgb(90, 90, 90) !important;
+  margin-left: 20px !important;
+  margin-top: 50px !important;
+  width: 100%;
+}
+
+#greenStockBadge{
+  height: 100px;
+  border: 4px solid #2f4414 ;
+  background: #338e33 ;
+  border-Radius: 10px;
+  color: #74fb8b !important;
+}
+
+#greenStockBadge:hover {
+  border: 4px solid #579705;
+
+}
+
+#redStockBadge {
+  height: 100px;
+  border: 4px solid #411e1e;
+  background: #722222;
+  border-Radius: 10px;
+  color: #fa5b5b !important;
+}
+
+#redStockBadge:hover {
+  border: 4px solid #902828;
+}
+
+#add{
+      background-image: url(../images/add.png);
+      background-size: cover;
+      height: 20px;
+      width: 20px;
+      margin-left: 1px;
+      margin-top: 1px;
+}
+
+#addButtons{
+  background: #2e2e2e;
+  border: 4px solid #323232;
+  margin-left: 15px;
+  height: 30px;
+  width: 30px;
+  border-radius: 15px
+}
+
+#addButtons:hover {
+  background: #2e2e2e;
+  border: 4px solid #3d3d3d;
+}
+
+#close {
+  background-image: url(../images/close.png);
+  background-size: cover;
+  height: 20px;
+  width: 20px;
+  margin-left: 1px;
+  margin-top: 1px;
+}
+
+line{
+  color:rgb(227, 227, 227)
+}
+
+*text {
+  color: rgb(227, 227, 227)
+}
+
+#charts{
+  background-color: #cacaca;
+  margin-left: 13px;
+    margin-right: 13px;
+}
+
+#homepage{
+    background-image: url(../images/homepage.png);
+      background-size: cover;
+      height:700px;
+      width: 1000px
 }

@@ -11,7 +11,7 @@ function PagesAuthSignup() {
     <div id="pages-auth-signup" className="container">
       <div className="row">
         <div className="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-          <h1 className="text-center">Signup</h1>
+          <h1 className="text-center" style={{ marginBottom: '20px' }}> Apes Signup</h1>
 
           <FormsAuthSignup
             onSubmit={signup}

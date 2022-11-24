@@ -22,19 +22,27 @@ function BadgeChart() {
   if (badgeDataSpark) {
     return (
       <VictoryChart
+        style={{
+          color: 'white'
+        }}
         fixLabelOverlap
         theme={VictoryTheme.material}
         maxDomain={{ y: badgeDataQuote.regularMarketDayHigh }}
         containerComponent={(
           <VictoryCursorContainer
+            id="line"
             cursorDimension="x"
             cursorLabel={({ datum }) => `Price:${datum.y.toFixed(2)}`}
+            style={{
+              labels: { fill: 'red' }
+            }}
           />
         )}
       >
         <VictoryLine
           style={{
             data: { stroke: '#c43a31' },
+
             parent: { border: '1px solid #ccc' },
 
             labels: { padding: -20 }

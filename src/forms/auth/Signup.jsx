@@ -33,7 +33,7 @@ function FormsAuthSignup(props) {
                 className={`form-control ${e?.email && t?.email && 'is-invalid'}`}
                 name="email"
                 type="email"
-                placeholder="test@test.com"
+                placeholder="DiamondHands@tothemoon.com"
               />
               <ErrorMessage
                 className="invalid-feedback"
@@ -72,7 +72,7 @@ function FormsAuthSignup(props) {
             </div>
 
             <div className="mb-3">
-              <label>Password Confirmation</label>
+              <label>Confirm? One more time! (password)</label>
               <Field
                 className={`form-control ${e?.passwordConfirmation && t?.passwordConfirmation && 'is-invalid'}`}
                 name="passwordConfirmation"
@@ -85,7 +85,7 @@ function FormsAuthSignup(props) {
               />
             </div>
 
-            <button className="btn btn-primary float-end" type="submit" disabled={isSubmitting}>Submit</button>
+            <button id="submitbutton" className="btn btn-primary float-end" type="submit" disabled={isSubmitting}>Submit</button>
           </Form>
         )
       }

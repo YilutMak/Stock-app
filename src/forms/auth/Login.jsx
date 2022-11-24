@@ -29,7 +29,7 @@ function FormsAuthLogin(props) {
                 className={`form-control ${e?.email && t?.email && 'is-invalid'}`}
                 name="email"
                 type="email"
-                placeholder="adam.chan@gmail.com"
+                placeholder="ape@wallstbets.com"
               />
               <ErrorMessage
                 className="invalid-feedback"
@@ -52,7 +52,7 @@ function FormsAuthLogin(props) {
               />
             </div>
 
-            <button className="btn btn-primary float-end" type="submit" disabled={isSubmitting}>Submit</button>
+            <button id="submitbutton" className="btn btn-primary float-end" type="submit" disabled={isSubmitting}>Submit</button>
           </Form>
         )
       }

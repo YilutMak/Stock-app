@@ -49,7 +49,7 @@ function QueryStockBadge() {
   return (
     <div className="col-1 p-1 m-1" style={{ minWidth: '270px', maxWidth: '270px' }} key={queryDataQuote[0].symbol} onClick={() => expandStockDetails(queryDataQuote[0].symbol, queryDataQuote[0], queryDataSpark[queryDataQuote[0].symbol])}>{
       queryDataQuote[0].regularMarketChangePercent > 0 ? (
-        <div className="d-flex" style={{ height: '100px', border: '4px solid black', background: 'green', borderRadius: '10px' }}>
+        <div id="greenStockBadge" className="d-flex" style={{}}>
           <div className="ml-2" style={{}}>
             <div id={queryDataQuote[0].symbol} />
             {querySparkIsLoading
@@ -57,7 +57,7 @@ function QueryStockBadge() {
               : (
                 <VictoryLine
                   style={{
-                    data: { stroke: '#000000', strokeWidth: 6 },
+                    data: { stroke: '#74fb8b', strokeWidth: 6 },
                     parent: {}
                   }}
                   animate={{
@@ -73,10 +73,10 @@ function QueryStockBadge() {
             <div className="">{queryDataQuote[0].regularMarketPrice.toFixed(2)}</div>
             <div className=""> {`${queryDataQuote[0].regularMarketChangePercent.toFixed(2)}%`}</div>
           </div>
-          <button type="button" className="mt-2" style={{ marginLeft: '15px', height: '30px', width: '30px', borderRadius: '15px' }} onClick={(e) => addStock(e, queryDataQuote[0].symbol)}>+</button>
+          <button id="addButtons" type="button" className="mt-2 p-0" style={{ }} onClick={(e) => addStock(e, queryDataQuote[0].symbol)}><div id="add" /></button>
         </div>
       ) : (
-        <div className="d-flex" style={{ height: '100px', border: '4px solid black', background: 'red', borderRadius: '10px' }}>
+        <div id="redStockBadge" className="d-flex" style={{ }}>
           <div className="ml-2" style={{}}>
             <div id={queryDataQuote[0].symbol} />
             {querySparkIsLoading
@@ -84,7 +84,7 @@ function QueryStockBadge() {
               : (
                 <VictoryLine
                   style={{
-                    data: { stroke: '#000000', strokeWidth: 6 },
+                    data: { stroke: '#fa5b5b', strokeWidth: 6 },
                     parent: {}
                   }}
                   animate={{
@@ -100,7 +100,7 @@ function QueryStockBadge() {
             <div className="">{queryDataQuote[0].regularMarketPrice.toFixed(2)}</div>
             <div className=""> {`${queryDataQuote[0].regularMarketChangePercent.toFixed(2)}%`}</div>
           </div>
-          <button type="button" className="mt-2" style={{ marginLeft: '15px', height: '30px', width: '30px', borderRadius: '15px' }} onClick={(e) => addStock(e, queryDataQuote[0].symbol)}>+</button>
+          <button id="addButtons" type="button" className="mt-2 p-0" style={{ }} onClick={(e) => addStock(e, queryDataQuote[0].symbol)}><div id="add" /></button>
         </div>
       )
     }

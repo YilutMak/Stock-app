@@ -40,7 +40,6 @@ function Routing() {
                     <Route path="/stocks" element={<PagesStockIndex />} />
 
                     <Route path="/my/stocks" element={<AuthRoute><PagesMyStocksIndex /></AuthRoute>} />
-                    {/* <Route path="/my/todos/new" element={<AuthRoute><PagesMyTodosNew /></AuthRoute>} /> */}
 
                     <Route path="*" element={<PagesNotFound />} />
                   </Route>

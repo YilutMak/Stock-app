@@ -2,6 +2,7 @@ import React, { useState, createContext, useContext } from 'react'
 import axios from 'axios'
 import produce from 'immer'
 
+import { toast } from 'react-toastify'
 import { renderErrors } from './_ultils'
 
 const MyStockContext = createContext()
@@ -84,7 +85,7 @@ export function MyStocksProvider({ children }) {
         }
       } catch (err) {
         draft.errorList = err.response.data
-        renderErrors(err)
+        // renderErrors(err)
       } finally {
         draft.ListIsLoading = false
       }
@@ -104,6 +105,7 @@ export function MyStocksProvider({ children }) {
       // console.log(err)
       renderErrors('err:', err)
     }
+    toast('Stock added successfully!')
     getStocksList()
   }
 
