@@ -114,7 +114,7 @@ export function MyStocksProvider({ children }) {
     try {
       await axios({
         method: 'DELETE',
-        url: `http://localhost:3000/api/my/stock/${data.id}`
+        url: `${process.env.API_URL}/api/my/stock/${data.id}`
       })
     } catch (err) {
       renderErrors(err)
